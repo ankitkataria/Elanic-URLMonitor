@@ -1,0 +1,15 @@
+{
+  "name": "url-monitor",
+  "version": "1.0.0",
+  "description": "Monitors URL every second on request from user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ankitkataria",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}
