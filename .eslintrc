@@ -1,0 +1,6 @@
+{
+  "extends": "loopback",
+  "rules": {
+    "strict": 0
+  }
+}

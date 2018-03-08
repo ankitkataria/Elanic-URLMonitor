@@ -4,12 +4,17 @@
   "description": "Monitors URL every second on request from user",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
   },
   "author": "ankitkataria",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-loopback": "^10.0.0"
   }
 }
