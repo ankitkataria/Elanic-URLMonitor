@@ -6,19 +6,17 @@ var intervalIds = {};
 
 var monitorURL = {
   start: function(url) {
-    var requestURL = url.url;
-    var requestHeaders = JSON.parse(url.headers);
     var requestMethod = url.method.toUpperCase();
     var responses = [];
 
     intervalIds[url._id] = setInterval(function() {
       var startTime = new Date();
 
-      fetch(requestURL, {
+      fetch(url.url, {
         method: url.method,
         body: (requestMethod == 'GET' || requestMethod == 'HEAD') ?
           undefined : JSON.stringify(url.data),
-        headers: JSON.parse(url.headers),
+        headers: url.headers,
       })
         .then(function(response) {
           var endTime = new Date();

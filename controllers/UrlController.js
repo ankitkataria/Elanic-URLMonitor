@@ -11,7 +11,7 @@ var UrlController = {
       console.log(newURL);
       monitorURL.start(newURL);
       res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify({id: newURL._id}));
+      res.send(JSON.stringify({success: true, _id: newURL._id}));
     });
   },
   delete: function(req, res) {
@@ -23,8 +23,16 @@ var UrlController = {
       .then(function(result) {
         monitorURL.stop(id);
         res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({deleted: result.n}));
+        res.send(JSON.stringify({success: (result.n == 1) ? true: false}));
       });
+  },
+  update: function(req, res) {
+    var id = req.params.id;
+    var data = req.body;
+    URL.updateURL(id, data).then(function(result) {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify({success: (result.n == 1) ? true: false, _id: id}));
+    });
   },
 };
 
