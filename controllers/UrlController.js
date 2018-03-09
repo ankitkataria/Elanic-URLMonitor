@@ -1,4 +1,5 @@
 var URL = require('../models/url.js');
+var monitorURL = require('../utils/monitorURL.js');
 
 var UrlController = {
   monitor: function(req, res) {
@@ -7,6 +8,7 @@ var UrlController = {
 
     URL.insertURL(monitorRequest).then(function(newURL) {
       console.log(newURL);
+      monitorURL.start(newURL);
       res.setHeader('Content-Type', 'application/json');
       res.send(JSON.stringify({id: newURL._id}));
     });

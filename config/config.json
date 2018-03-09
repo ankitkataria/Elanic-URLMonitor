@@ -1,5 +1,6 @@
 {
   "mongo": {
     "db": "urls"
-  }
+  },
+  "monitorTime": 1000
 }

@@ -34,6 +34,16 @@ var URL = {
       });
     });
   },
+  updateURL: function(id, data) {
+    return new Promise(function(resolve, reject) {
+      URLModel.update({_id: id}, data, function(err, result) {
+        if (err)
+          reject(err);
+        else
+          resolve(result);
+      });
+    });
+  },
 };
 
 module.exports = URL;
