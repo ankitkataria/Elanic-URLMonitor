@@ -4,6 +4,7 @@ var monitorURL = require('../utils/monitorURL.js');
 var UrlController = {
   monitor: function(req, res) {
     console.log('[+] URL request received');
+
     var monitorRequest = req.body;
 
     URL.insertURL(monitorRequest).then(function(newURL) {
@@ -15,10 +16,12 @@ var UrlController = {
   },
   delete: function(req, res) {
     console.log('[-] URL delete request received');
+
     var id = req.params.id;
 
     URL.deleteURL(id)
       .then(function(result) {
+        monitorURL.stop(id);
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify({deleted: result.n}));
       });

@@ -1,7 +1,8 @@
 var fetch = require('node-fetch');
 var config = require('../config/config.json');
 var URL = require('../models/url.js');
-var handle = null;
+
+var intervalIds = {};
 
 var monitorURL = {
   start: function(url) {
@@ -10,7 +11,7 @@ var monitorURL = {
     var requestMethod = url.method.toUpperCase();
     var responses = [];
 
-    var handle = setInterval(function() {
+    intervalIds[url._id] = setInterval(function() {
       var startTime = new Date();
 
       fetch(requestURL, {
@@ -24,9 +25,14 @@ var monitorURL = {
           var elapsedTime = endTime.getTime() - startTime.getTime();
 
           responses.push(elapsedTime);
-          URL.updateURL(url._id, {responses: responses});
+          URL.updateURL(url._id, {
+            responses: responses,
+          });
         });
     }, config.monitorTime);
+  },
+  stop: function(id) {
+    clearInterval(intervalIds);
   },
 };
 

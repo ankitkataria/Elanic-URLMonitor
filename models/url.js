@@ -44,6 +44,16 @@ var URL = {
       });
     });
   },
+  retrieveURL: function(id) {
+    return new Promise(function(resolve, reject) {
+      URLModel.find({_id: id}, function(err, result) {
+        if (err)
+          reject(err);
+        else
+          resolve(result);
+      });
+    });
+  },
 };
 
 module.exports = URL;
