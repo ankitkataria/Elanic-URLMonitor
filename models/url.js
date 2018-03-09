@@ -1,19 +1,36 @@
-var URLModel = require('../schema/createSchema.js');
+var mongoose = require('mongoose');
+var config = require('../config/config.json');
+var urlSchema = require('../schema/urlSchema.js');
+
+// making connection to database
+mongoose.connect('mongodb://localhost/' + config.mongo.db);
+
+// initializing model
+var schema = mongoose.Schema(urlSchema);
+var URLModel = mongoose.model('URL', schema);
 
 var URL = {
   insertURL: function(url) {
     return new Promise(function(resolve, reject) {
       // to generate a random id between 1 to 1000
-      url._id = Math.floor(Math.random() * (10000) + 1);
+      url._id = Math.floor(Math.random() * (100000) + 1);
 
-      URLModel().then(function(model) {
-        var newURL = new model(url);
-        newURL.save(function(err, newURL) {
-          if (err)
-            reject(err);
-          else
-            resolve(newURL);
-        });
+      var newURL = new URLModel(url);
+      newURL.save(function(err, newURL) {
+        if (err)
+          reject(err);
+        else
+          resolve(newURL);
+      });
+    });
+  },
+  deleteURL: function(id) {
+    return new Promise(function(resolve, reject) {
+      URLModel.remove({_id: id}, function(err, result) {
+        if (err)
+          reject(err);
+        else
+          resolve(result);
       });
     });
   },
