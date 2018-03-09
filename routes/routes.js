@@ -1,8 +1,8 @@
 var fs = require('fs');
-var HomeController = require('../controllers/HomeController');
+var UrlController = require('../controllers/UrlController');
 
 var routes = function(app) {
-  app.get('/:id', HomeController.Index);
+  app.post('/', UrlController.monitor);
 };
 
 module.exports = routes;
