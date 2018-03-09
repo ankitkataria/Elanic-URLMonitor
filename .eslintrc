@@ -1,9 +1,9 @@
 {
   "extends": "loopback",
   "rules": {
-    "strict": 0,
-    "parserOptions": {
-        "ecmaVersion": 2017
-    }
+    "strict": 0
+  },
+  "parserOptions": {
+      "ecmaVersion": 2017
   }
 }
