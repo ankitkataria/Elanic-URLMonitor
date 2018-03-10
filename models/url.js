@@ -44,7 +44,7 @@ var URL = {
       });
     });
   },
-  retrieveURL: function(id) {
+  retrieveURLs: function(id) {
     return new Promise(function(resolve, reject) {
       URLModel.find({_id: id}, function(err, result) {
         if (err)

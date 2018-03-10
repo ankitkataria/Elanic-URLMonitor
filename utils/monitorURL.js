@@ -26,6 +26,10 @@ var monitorURL = {
           URL.updateURL(url._id, {
             responses: responses,
           });
+
+          // to ensure there are only the last 100 responses at a time
+          if (responses.length > 100)
+            responses.shift();
         });
     }, config.monitorTime);
   },

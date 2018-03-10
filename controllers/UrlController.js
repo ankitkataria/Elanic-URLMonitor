@@ -1,5 +1,6 @@
 var URL = require('../models/url.js');
 var monitorURL = require('../utils/monitorURL.js');
+var percentile = require('../utils/percentile.js');
 
 var UrlController = {
   monitor: async function(req, res) {
@@ -34,8 +35,22 @@ var UrlController = {
   },
   get: async function(req, res) {
     var id = req.params.id;
-    var url = await URL.retrieveURL(id);
-    console.log(url);
+    var urls = await URL.retrieveURLs(id);
+
+    res.setHeader('Content-Type', 'application/json');
+
+    if (!urls.length) {
+      res.send(JSON.stringify({success: false}));
+    } else if (urls.length == 1) {
+      var percentileCalculator = percentile(urls[0].responses);
+      var url = urls[0].toObject();
+
+      [50, 75, 95, 99].forEach((n) => {
+        url[n + 'th_percentile'] = percentileCalculator(n)
+      });
+
+      res.send(JSON.stringify(url));
+    }
   },
 };
 
