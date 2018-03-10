@@ -49,7 +49,7 @@ var UrlController = {
       var url = urls[0].toObject();
 
       [50, 75, 95, 99].forEach((n) => {
-        url[n + 'th_percentile'] = percentileCalculator(n)
+        url[n + 'th_percentile'] = percentileCalculator(n);
       });
 
       res.send(JSON.stringify(url));

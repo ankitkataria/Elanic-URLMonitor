@@ -31,7 +31,6 @@ var monitorURL = {
           URL.updateURL(url._id, {
             responses: responses,
           });
-
         });
     }, config.monitorTime);
   },
