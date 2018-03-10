@@ -1,13 +1,14 @@
 // a closure to calculate the nth percentile
 var percentile = function(responses) {
-  responses.sort();
+  var data = responses.slice(0);
+  data.sort();
   var nthpercentile = function(n) {
-    var index = (n / 100) * responses.length;
+    var index = (n / 100) * data.length;
     var percentile = 0;
     if (Math.floor(index) == index)
-      percentile = (responses[index] + responses[index-1])/2;
+      percentile = (data[index] + data[index - 1]) / 2;
     else
-      percentile = responses[Math.floor(index)];
+      percentile = data[Math.floor(index)];
     return percentile;
   };
 

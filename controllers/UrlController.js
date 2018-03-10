@@ -25,6 +25,8 @@ var UrlController = {
     res.send(JSON.stringify({success: (result.n == 1) ? true : false}));
   },
   update: async function(req, res) {
+    console.log('[.] URL update request received');
+
     var id = req.params.id;
     var data = req.body;
 
@@ -35,7 +37,8 @@ var UrlController = {
   },
   get: async function(req, res) {
     var id = req.params.id;
-    var urls = await URL.retrieveURLs(id);
+    var urls = await URL.retrieveURLs({_id: id});
+    console.log('[+] Retrieving url with id: ' + id);
 
     res.setHeader('Content-Type', 'application/json');
 
@@ -51,6 +54,11 @@ var UrlController = {
 
       res.send(JSON.stringify(url));
     }
+  },
+  getAll: async function(req, res) {
+    var urls = await URL.retrieveURLs({});
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({urls: urls}));
   },
 };
 
