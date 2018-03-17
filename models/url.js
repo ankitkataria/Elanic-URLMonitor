@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var config = require('../config/config.json');
 var urlSchema = require('../schema/urlSchema.js');
+var uniqid = require('uniqid');
 
 // making connection to database
 mongoose.connect('mongodb://localhost/' + config.mongo.db);
@@ -12,8 +13,8 @@ var URLModel = mongoose.model('URL', schema);
 var URL = {
   insertURL: function(url) {
     return new Promise(function(resolve, reject) {
-      // to generate a random id between 1 to 1000
-      url._id = Math.floor(Math.random() * (100000) + 1);
+      // to generate a random hex id
+      url._id = uniqid();
 
       var newURL = new URLModel(url);
       newURL.save(function(err, newURL) {

@@ -1,5 +1,5 @@
 var urlSchema = {
-  _id: Number,
+  _id: String,
   url: String,
   method: String,
   headers: Object,

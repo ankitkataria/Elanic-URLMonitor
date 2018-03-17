@@ -4,9 +4,8 @@
   "description": "Monitors URL every second on request from user",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .",
-    "test": "mocha --timeout 10000"
+    "test": "mocha --timeout 10000",
+    "lint": "eslint ."
   },
   "author": "ankitkataria",
   "license": "ISC",
@@ -14,7 +13,8 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "mongoose": "^5.0.9",
-    "node-fetch": "^2.1.1"
+    "node-fetch": "^2.1.1",
+    "uniqid": "^4.1.1"
   },
   "devDependencies": {
     "chai": "^4.1.2",

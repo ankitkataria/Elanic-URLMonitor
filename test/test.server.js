@@ -18,7 +18,6 @@ describe('URLs', function() {
 
 describe('POST /', function() {
   it('should add a URL for monitoring', function(done) {
-
     var url = {
       'headers': {
         'some': 'header',
@@ -132,7 +131,7 @@ describe('DELETE /:id', function() {
             result.body.should.be.a('object');
             result.body.should.have.property('success').eql(true);
 
-            if(err) done(err);
+            if (err) done(err);
             done();
           });
       });
