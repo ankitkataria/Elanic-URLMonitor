@@ -9,6 +9,12 @@ An API, that when given the information - (URL, method, data, headers), monitors
 - Run `npm intall`
 - Run app `nodemon app.js`
 
+## NPM scripts
+- linting: `npm run lint`
+- test:
+  - the tests have been written using [mochajs](https://mochajs.org/) and [chaijs](http://www.chaijs.com/)
+  - run `npm run test`
+
 ## Routes
 
 ### POST
