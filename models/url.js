@@ -1,22 +1,22 @@
-var mongoose = require('mongoose');
-var config = require('../config/config.json');
-var urlSchema = require('../schema/urlSchema.js');
-var uniqid = require('uniqid');
+const mongoose = require('mongoose');
+const config = require('../config/config.json');
+const urlSchema = require('../schema/urlSchema.js');
+const uniqid = require('uniqid');
 
 // making connection to database
 mongoose.connect('mongodb://localhost/' + config.mongo.db);
 
 // initializing model
-var schema = mongoose.Schema(urlSchema);
-var URLModel = mongoose.model('URL', schema);
+const schema = mongoose.Schema(urlSchema);
+const URLModel = mongoose.model('URL', schema);
 
-var URL = {
+const URL = {
   insertURL: function(url) {
     return new Promise(function(resolve, reject) {
       // to generate a random hex id
       url._id = uniqid();
 
-      var newURL = new URLModel(url);
+      let newURL = new URLModel(url);
       newURL.save(function(err, newURL) {
         if (err)
           reject(err);
@@ -47,12 +47,14 @@ var URL = {
   },
   retrieveURLs: function(data) {
     return new Promise(function(resolve, reject) {
-      URLModel.find(data, function(err, result) {
-        if (err)
-          reject(err);
-        else
-          resolve(result);
-      });
+      URLModel.find(data)
+        .lean()
+        .exec(function(err, result) {
+          if (err)
+            reject(err);
+          else
+            resolve(result);
+        });
     });
   },
   deleteAll: function() {

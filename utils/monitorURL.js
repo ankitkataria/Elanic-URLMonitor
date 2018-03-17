@@ -1,16 +1,16 @@
-var fetch = require('node-fetch');
-var config = require('../config/config.json');
-var URL = require('../models/url.js');
+const fetch = require('node-fetch');
+const config = require('../config/config.json');
+const URL = require('../models/url.js');
 
-var intervalIds = {};
+const intervalIds = {};
 
-var monitorURL = {
+const monitorURL = {
   start: function(url) {
-    var requestMethod = url.method.toUpperCase();
-    var responses = [];
+    let requestMethod = url.method.toUpperCase();
+    let responses = [];
 
     intervalIds[url._id] = setInterval(function() {
-      var startTime = new Date();
+      let startTime = new Date();
 
       fetch(url.url, {
         method: url.method,
@@ -19,8 +19,8 @@ var monitorURL = {
         headers: url.headers,
       })
         .then(function(response) {
-          var endTime = new Date();
-          var elapsedTime = endTime.getTime() - startTime.getTime();
+          let endTime = new Date();
+          let elapsedTime = endTime.getTime() - startTime.getTime();
 
           responses.push(elapsedTime);
 

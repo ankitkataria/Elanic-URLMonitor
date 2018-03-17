@@ -1,9 +1,9 @@
-var config = require('../config/config.json');
-var URL = require('../models/url.js');
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var app = require('../app.js');
-var should = chai.should();
+const config = require('../config/config.json');
+const URL = require('../models/url.js');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('../app.js');
+const should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -18,7 +18,7 @@ describe('URLs', function() {
 
 describe('POST /', function() {
   it('should add a URL for monitoring', function(done) {
-    var url = {
+    let url = {
       'headers': {
         'some': 'header',
       },
@@ -47,7 +47,7 @@ describe('GET /:id', function() {
   it('should get the url against the corresponding _id', function(done) {
     URL.retrieveURLs({})
       .then(function(urls) {
-        var id = urls[0]._id;
+        let id = urls[0]._id;
         chai.request(app)
           .get('/' + id)
           .end(function(err, result) {
@@ -94,7 +94,7 @@ describe('PUT /:id', function() {
   it('should update the url in the DB', function(done) {
     URL.retrieveURLs({})
       .then(function(urls) {
-        var id = urls[0]._id;
+        let id = urls[0]._id;
         chai.request(app)
           .put('/' + id)
           .send({'data': 'test'})
@@ -123,7 +123,7 @@ describe('DELETE /:id', function() {
   it('should delete the url corresponding to the id', function(done) {
     URL.retrieveURLs({})
       .then(function(urls) {
-        var id = urls[0]._id;
+        let id = urls[0]._id;
         chai.request(app)
           .delete('/' + id)
           .end(function(err, result) {

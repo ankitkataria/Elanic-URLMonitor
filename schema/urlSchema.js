@@ -1,5 +1,5 @@
-var urlSchema = {
-  _id: String,
+const urlSchema = {
+  _id: {type: String, index: true},
   url: String,
   method: String,
   headers: Object,
