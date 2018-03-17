@@ -54,6 +54,16 @@ var URL = {
       });
     });
   },
+  deleteAll: function() {
+    return new Promise(function(resolve, reject) {
+      URLModel.remove({}, function(err, result) {
+        if (err)
+          reject(err);
+        else
+          resolve(result);
+      });
+    });
+  },
 };
 
 module.exports = URL;
